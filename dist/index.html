@@ -2,15 +2,94 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>TOP Todo List</title>
+    <title>Task Tracker 300 - TOP - Dynamically Rendered</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <script src="main.js" async defer></script>
   </head>
   <body>
-    <div id="content">
-      <h1>Hello World TODODODODODO</h1>
-    </div>
+    <!--div id="content"-->
+      <h1 class="title">Task Tracker 3000</h1>
+
+      <div class="list-pane">
+        <h2 class="list-title">My Lists</h2>
+        <ul class="list">
+          <li class="list-name active-list">Groceries</li>
+          <li class="list-name">Homework</li>
+          <li class="list-name">Chores</li>
+        </ul>
+
+        <form action="">
+          <input 
+            type="text"
+            class="new list"
+            placeholder="new list name"
+            aria-label="new list name"
+            />
+          <button class="btn create"
+            aria-label="create new list">+</button>
+
+        </form>
+      </div>
+
+      <div class="todos-pane">
+        <div class="todos-header">
+          <h2 class="list-title">Groceries</h2>
+          <p class="todo-count">3 tasks remaining</p>
+        </div>
+        <div class="todos-body">
+          <div class="todos">
+            <div class="todo">
+              <input type="checkbox" id="todo-1"/>
+              <label for="todo-1">
+                <span class="custom-checkbox"></span>
+                  Get bananas
+              </label>
+            </div>
+            <!-- /todo-1-->
+
+            <div class="todo">
+              <input type="checkbox" id="todo-2"/>
+              <label for="todo-2">
+                <span class="custom-checkbox"></span>
+                  Get pears
+              </label>
+            </div>
+            <!-- /todo-2-->
+
+            <div class="todo">
+              <input type="checkbox" id="todo-3"/>
+              <label for="todo-3">
+                <span class="custom-checkbox"></span>
+                  Get beer
+              </label>
+            </div>
+            <!-- /todo-3-->
+          </div>
+
+          <div class="todo-creator">
+            <form action="">
+              <input 
+                type="text"
+                class="new todo"
+                placeholder="new todo name"
+                aria-label="new todo name"
+                />
+              <button class="btn create"
+                aria-label="create new todo">+</button>
+    
+            </form>
+          </div>
+
+          <div class="delete-stuff">
+            <div class="btn delete">Clear completed todos</div>
+            <div class="btn delete">Delete list</div>
+          </div>
+        </div>
+      </div>
+    <!--/div-->
   </body>
 </html>

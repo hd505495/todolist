@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start":  "webpack serve --open firefox"
+    "start":  "webpack serve --hot --open firefox"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hd505495/todolist.git"
   },
   "author": "Hawk Dykes",
   "license": "ISC",
