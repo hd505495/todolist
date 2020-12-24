@@ -33,7 +33,7 @@ body {
   font-weight: 800;
   color: rgba(0, 0, 0, 0.3);
   letter-spacing: 2px;
-  margin: 0 0 0.5em;
+  margin: 0 0 0.3em;
 }
 
 .list-pane {
@@ -49,6 +49,8 @@ body {
 
 .list-name {
   cursor: pointer;
+  font-weight: 400;
+  color: gray;
 }
 
 .list-name:hover {
@@ -145,7 +147,8 @@ form {
 }
 
 .active-list {
-  font-weight: 700;
+  font-weight: 900;
+  color: white;
 }
 
 .todos-pane {
@@ -162,6 +165,10 @@ form {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.lists-title {
+  margin: 0 1em 0 0;
 }
 
 .list-title {

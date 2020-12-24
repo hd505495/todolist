@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Task Tracker 300 - TOP - Dynamically Rendered</title>
+    <title>Task Tracker 3000 - TOP - Dynamically Rendered</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
@@ -11,16 +11,11 @@
     <script src="main.js" async defer></script>
   </head>
   <body>
-    <!--div id="content"-->
       <h1 class="title">Task Tracker 3000</h1>
 
       <div class="list-pane">
-        <h2 class="list-title">My Lists</h2>
-        <ul class="list" data-lists>
-          <!-- <li class="list-name active-list">Groceries</li>
-          <li class="list-name">Homework</li>
-          <li class="list-name">Chores</li> -->
-        </ul>
+        <h2 class="lists-title">My Lists</h2>
+        <ul class="list" data-lists></ul>
 
         <form action="" data-new-list-form>
           <input 
@@ -47,7 +42,7 @@
               <input type="checkbox" id="todo-1"/>
               <label for="todo-1">
                 <span class="custom-checkbox"></span>
-                  Get bananas
+                  Get cherries
               </label>
             </div>
             <!-- /todo-1-->
@@ -72,10 +67,11 @@
           </div>
 
           <div class="todo-creator">
-            <form action="">
+            <form action="" data-new-todo-form>
               <input 
                 type="text"
                 class="new todo"
+                data-new-todo-input
                 placeholder="new todo name"
                 aria-label="new todo name"
                 />
@@ -87,10 +83,17 @@
 
           <div class="delete-stuff">
             <div class="btn delete">Clear completed todos</div>
-            <div class="btn delete">Delete list</div>
+            <div class="btn delete" data-delete-list-btn>Delete list</div>
           </div>
         </div>
       </div>
-    <!--/div-->
+    <template id="todo-template">
+      <div class="todo">
+        <input type="checkbox" id="todo"/>
+        <label for="todo">
+          <span class="custom-checkbox"></span>
+        </label>
+      </div>
+    </template>
   </body>
 </html>
