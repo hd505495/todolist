@@ -5,6 +5,7 @@ const listsContainer = document.querySelector('[data-lists');
 const newListForm = document.querySelector('[data-new-list-form');
 const newListInput = document.querySelector('[data-new-list-input');
 const deleteListBtn = document.querySelector('[data-delete-list-btn]');
+const clearCompletedTodos = document.querySelector('[data-clear-completeds]');
 const listDisplayContainer = document.querySelector('.todos-pane');
 const listTitleElement = document.querySelector('.list-title');
 const listCountElement = document.querySelector('.todo-count');
@@ -13,6 +14,7 @@ const todoTemplate = document.getElementById('todo-template');
 const newTodoForm = document.querySelector('[data-new-todo-form]');
 const newTodoInput = document.querySelector('[data-new-todo-input]');
 
+// localStorage keys
 const LOCAL_STORAGE_LISTS_KEY = 'todos.lists';
 const LOCAL_STORAGE_ACTIVE_LIST_ID_KEY = 'todos.activeListId';
 
@@ -20,6 +22,7 @@ const LOCAL_STORAGE_ACTIVE_LIST_ID_KEY = 'todos.activeListId';
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LISTS_KEY)) || [];
 // retrieve id of active list if exists
 let activeListId = localStorage.getItem(LOCAL_STORAGE_ACTIVE_LIST_ID_KEY);
+
 
 /////////////////////
 // Event listeners //
@@ -38,13 +41,15 @@ listsContainer.addEventListener('click', e => {
 newListForm.addEventListener('submit', e => {
   e.preventDefault();
   const listName = newListInput.value;
-  console.log(listName);
   if (listName == null || listName === "") {
     console.log('no input value');
     return;
   }
   const list = createList(listName);
   newListInput.value = null;
+  if (lists.length == 0) {
+    activeListId = list.id;
+  }
   lists.push(list);
   save();
   render();
@@ -54,7 +59,6 @@ newListForm.addEventListener('submit', e => {
 newTodoForm.addEventListener('submit', e => {
   e.preventDefault();
   const todoName = newTodoInput.value;
-  console.log(todoName);
   if (todoName == null || todoName === "") {
     console.log('no input value');
     return;
@@ -63,6 +67,23 @@ newTodoForm.addEventListener('submit', e => {
   newTodoInput.value = null;
   const activeList = lists.find(list => list.id == activeListId);
   activeList.todos.push(todo);
+  save();
+  render();
+})
+
+todosContainer.addEventListener('click', e => {
+  if (e.target.tagName.toLowerCase() === 'input') {
+    const activeList = lists.find(list => list.id == activeListId);
+    const selectedTodo = activeList.todos.find(todo => todo.id == e.target.id);
+    selectedTodo.complete = e.target.checked;
+    save();
+    renderTodoCount(activeList);
+  }
+})
+
+clearCompletedTodos.addEventListener('click', e => {
+  const activeList = lists.find(list => list.id == activeListId);
+  activeList.todos = activeList.todos.filter(todo => !todo.complete);
   save();
   render();
 })
@@ -84,10 +105,11 @@ const render = () => {
   renderLists();
 
   const activeList = lists.find(list => list.id == activeListId);
+
   if (activeListId == null) {
-    listsContainer.style.display = 'none';
+    listDisplayContainer.style.display = 'none';
   } else {
-    listsContainer.style.display = '';
+    listDisplayContainer.style.display = '';
     listTitleElement.innerText = activeList.name;
     renderTodoCount(activeList);
 
@@ -128,7 +150,7 @@ const renderTodoCount = (activeList) => {
   listCountElement.innerText = `${incompleteTodoCount} ${todoString} remaining`;
 }
 
-// save lists to local storage
+// save lists and active list ID to local storage
 const save = () => {
   localStorage.setItem(LOCAL_STORAGE_LISTS_KEY, JSON.stringify(lists));
   localStorage.setItem(LOCAL_STORAGE_ACTIVE_LIST_ID_KEY, activeListId);

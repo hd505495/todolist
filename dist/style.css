@@ -15,12 +15,9 @@
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  /*"Work Sans", sans-serif;*/
   font-weight: 300;
   font-size: 1.5rem;
   background: linear-gradient(90deg, rgb(1, 7, 56) 0%, rgba(95,140,152,1) 64%); 
-  /*background-image: linear-gradient(120deg, blue, lightblue);
-  background-color: var(--clr-primary); */
   color: var(--clr-light);
   display: grid;
   grid: "header header header header header" auto "...... lists  active active ......" auto/1fr minmax(100px, 300px) minmax(150px, 350px) minmax(150px, 350px) 1fr;
